@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+html{
+    font-family: "Inter", sans-serif;
+}
+.mono{
+    font-family: "Geist Mono", monospace;
+}
+
+.card .p-inputtext:enabled:focus{
+    border-color: #155DFC;
+    color: #155DFC;
+}
