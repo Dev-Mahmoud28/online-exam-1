@@ -1,0 +1,37 @@
+@if(!isEmail){
+    <ol class="flex items-center w-full ">
+    <li class="flex w-full items-center text-fg-brand after:content-[''] after:w-full  after:border-b after:border-blue-600 after:border after:inline-block after:mx-1">
+        <span class="flex items-center justify-center w-2 h-2 bg-blue-600  lg:h-3 lg:w-3 rotate-45 shrink-0">
+        </span>
+    </li>
+    <li class="flex w-full items-center text-fg-brand after:content-[''] after:w-full after:border-b after:border-blue-600 after:border after:inline-block after:mx-1"
+        [class.after:border-dashed] = "currentStep() == 2 "
+    >
+        <span 
+        class="flex items-center justify-center w-2 h-2 bg-blue-600  lg:h-3 lg:w-3 rotate-45 shrink-0"
+        [class.active]="currentStep() == 2"
+        [class.after:border-dashed] = "currentStep() <= 2 "
+        >
+        </span>
+    </li>
+    <li class="flex w-full items-center text-fg-brand after:content-[''] after:w-full after:border-b after:border-blue-600 after:border after:inline-block after:mx-1"
+        [class.after:border-dashed] = "currentStep() <= 3 "
+    >
+        <span 
+        class="flex items-center justify-center w-2 h-2 border border-blue-600  lg:h-3 lg:w-3 rotate-45 shrink-0"
+        [class.active]="currentStep() == 3"
+        [class.notActive] = "currentStep() > 3"
+        >
+        </span>
+    </li>
+    <li class="flex w-full items-center">
+        <span 
+        class="flex items-center justify-center w-2 h-2 border border-blue-600  lg:h-3 lg:w-3 rotate-45 shrink-0"
+        [class.active]="currentStep() == 4"
+        >
+        </span>
+    </li>
+</ol>
+}
+
+
