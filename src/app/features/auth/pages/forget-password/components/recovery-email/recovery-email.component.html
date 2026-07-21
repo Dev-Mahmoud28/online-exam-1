@@ -1,0 +1,14 @@
+<h2 class="title text-2xl md:text-3xl font-bold mb-2.5">Forgot Password</h2>
+<div class="mono flex flex-col gap-4">
+<p class="text-gray-500">Don’t worry, we will help you recover your account.</p>
+<form [formGroup]="emailForm" (ngSubmit)="submitEmail()" class="flex flex-col gap-4">
+    <app-input  [type]="'email'" label="Email" id="email" placeholder="user@example.com" [control]="emailControl"></app-input>
+    @if((emailControl.hasError("required") && emailControl.touched) || emailControl.hasError("email")){
+        <app-error-banner></app-error-banner>
+    }
+    <app-button [disabled]="emailForm.invalid">Next <i class="fa-solid fa-angle-right"></i></app-button>
+</form>
+<p class="text-gray-500 text-center">
+    Don’t have an account? <a routerLink="/register" class="text-blue-600">Create yours</a>
+</p>
+</div>

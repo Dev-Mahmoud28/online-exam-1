@@ -1,0 +1,37 @@
+<div class="flex flex-col gap-4 w-[75%] mx-auto">
+  <h2 class="title text-2xl md:text-3xl font-bold">Login</h2>
+  <div class="mono flex flex-col gap-4">
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="flex flex-col gap-2.5">
+      <div class="userName flex flex-col gap-2.5">
+        <app-input
+          [type]="'text'"
+          placeholder="User123"
+          label="Username"
+          id="userName"
+          [control]="userNameControl"
+        ></app-input>
+      </div>
+      <div class="password flex flex-col gap-2.5">
+        <app-input
+          [type]="'password'"
+          placeholder="*******"
+          label="Password"
+          id="password"
+          [control]="passwordControl"
+        ></app-input>
+      </div>
+      <div class="forget text-end">
+        <a class="text-blue-600" routerLink="/forgetPassword">Forgot Your Password?</a>
+      </div>
+      @if(userNameControl.hasError("required") || passwordControl.hasError("required")){
+        @if(userNameControl.touched || passwordControl.touched){
+        <app-error-banner></app-error-banner>
+      }
+      }
+      <app-button [disabled]="loginForm.invalid" type="submit" [styles]="{ 'background-color': '#155DFC' }">Login</app-button>
+    </form>
+    <p class="text-gray-500">
+      Don’t have an account? <a routerLink="/register" class="text-blue-600">Create yours</a>
+    </p>
+  </div>
+</div>

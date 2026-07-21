@@ -1,0 +1,9 @@
+@reference "../../../../../../../styles.css";
+
+.active{
+    @apply w-4 h-4 bg-blue-600 border-4 border-blue-100  lg:h-5 lg:w-5;
+}
+
+.notActive{
+   @apply w-2 h-2 bg-blue-600  lg:h-3 lg:w-3 border-0;
+}

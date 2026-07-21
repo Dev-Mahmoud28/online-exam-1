@@ -1,0 +1,21 @@
+<app-stepper [currentStep]="2"></app-stepper>
+<h2 class="title text-2xl md:text-3xl font-bold my-4">Create Account</h2>
+<h2 class="text-blue-600 text-2xl font-bold mb-2.5">Verify OTP</h2>
+<div class="mono flex flex-col gap-6">
+  <p class="text-gray-500">
+    Please enter the 6-digits code we have sent to:
+    <span class="text-gray-800">{{sentEmail()}}</span>
+    <span class="text-blue-600 underline cursor-pointer" routerLink="/register/email"> Edit</span>
+  </p>
+
+  <div class="card flex justify-center">
+    <p-inputotp [(ngModel)]="value" [length]="6" />
+  </div>
+  <p class="text-gray-500 text-[14px] text-center">you can request another code in: 60s</p>
+  <app-button
+    [disabled]="valueLength() < 6"
+    (click)="printValue()"
+    [styles]="{ 'background-color': '#EFF6FF', color: '#1F2937', border: '1px solid #155DFC' }"
+    >Verify Code</app-button
+  >
+</div>

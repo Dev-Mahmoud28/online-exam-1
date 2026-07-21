@@ -1,0 +1,39 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 h-dvh">
+    <div class="info hidden md:flex md:flex-col gap-12 p-12">
+        <h2 class="logo text-blue-600 text-[20px] font-bold flex items-center gap-2.5">
+            <span class="icon p-1.5">
+                <i class="fa-solid fa-folder"></i>
+            </span>
+            <span>Exam App</span>
+        </h2>
+        <div class="details flex flex-col gap-10">
+            <h1 class="text-2xl font-bold">Empower your learning journey with our smart exam platform.</h1>
+            <ul class="list flex flex-col gap-4">
+                <li class="flex items-start gap-5">
+                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa-solid fa-brain"></i></span>
+                    <div class="text">
+                        <h3 class="text-blue-600">Tailored Diplomas</h3>
+                        <h4 class="text-gray-700">Choose from specialized tracks like Frontend, Backend, and Mobile Development.</h4>
+                    </div>
+                </li>
+                <li class="flex items-start gap-5">
+                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa fa-book-open"></i></span>
+                    <div class="text">
+                        <h3 class="text-blue-600">Focused Exams</h3>
+                        <h4 class="text-gray-700">Access topic-specific tests including HTML, CSS, JavaScript, and more.</h4>
+                    </div>
+                </li>
+                <li class="flex items-start gap-5">
+                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa-regular fa-rectangle-list"></i></span>
+                    <div class="text">
+                        <h3 class="text-blue-600">Smart Multi-Step Forms</h3>
+                        <h4 class="text-gray-700">Choose from specialized tracks like Frontend, Backend, and Mobile Development.</h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="form p-14 flex flex-col justify-center">
+        <router-outlet></router-outlet>
+    </div>
+</div>

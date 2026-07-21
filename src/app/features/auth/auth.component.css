@@ -1,0 +1,6 @@
+.info{
+    background: linear-gradient(45deg, rgba(83, 193, 229, 0.4),#EFF6FFBF, rgba(83, 193, 229, 0.4));
+}
+.logo,.list {
+    font-family: "Geist Mono", monospace;
+}
