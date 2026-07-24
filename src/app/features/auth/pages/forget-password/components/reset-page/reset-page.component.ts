@@ -21,7 +21,7 @@ export class ResetPageComponent {
   }
 
   back(){
-    this.router.navigate(['/forgetPassword/recoveryEmail'])
+    this.router.navigate(['/recovery-email']);
   }
 
   ngOnInit(): void {

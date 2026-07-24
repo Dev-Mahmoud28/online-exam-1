@@ -11,3 +11,30 @@ html{
     border-color: #155DFC;
     color: #155DFC;
 }
+
+[data-sonner-toaster] {
+  --normal-bg: #1f2937;
+  --normal-text: #ffffff;
+}
+
+[data-sonner-toast] {
+  background: #1F2937 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  min-width: 360px;
+  padding: 16px !important;
+}
+
+[data-sonner-description] {
+  color: #cbd5e1;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: #22c55e !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-icon] {
+  color: #DC2626 !important;
+}

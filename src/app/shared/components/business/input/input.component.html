@@ -36,6 +36,13 @@
       @if(control().hasError("email")){
         <p class="error text-red-600">Please Enter Valid Email</p>
       }
+      @if( control().hasError("pattern")&& control().touched){
+        <ul>
+          <li class="error text-red-600 text-[14px] list-disc">Password must be at least 8 characters</li>
+          <li class="error text-red-600 text-[14px] list-disc my-1.5">Password must include at least one uppercase letter</li>
+          <li class="error text-red-600 text-[14px] list-disc">Password must include at least one special character</li>
+        </ul>
+      }
     }
     
 </div>

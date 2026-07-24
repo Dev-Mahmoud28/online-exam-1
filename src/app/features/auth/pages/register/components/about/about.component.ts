@@ -25,16 +25,15 @@ export class AboutComponent {
     return this.registerForm.get("lastName") as FormControl
   }
   get userNameControl(){
-    return this.registerForm.get("userName") as FormControl
+    return this.registerForm.get("username") as FormControl
   }
   get phoneControl(){
     return this.registerForm.get("phone") as FormControl
   }
 
   submitForm(){
-    if(this.registerForm.controls["firstName"].valid && this.registerForm.controls["lastName"].valid && this.registerForm.controls["userName"].valid && this.registerForm.controls["phone"].valid){
+    if(this.registerForm.controls["firstName"].valid && this.registerForm.controls["lastName"].valid && this.registerForm.controls["username"].valid && this.registerForm.controls["phone"].valid){
       this.router.navigate(['/register/create-password']);
-      console.log(this.registerForm)
     }
   }
 }

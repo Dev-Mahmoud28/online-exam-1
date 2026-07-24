@@ -9,7 +9,7 @@
         placeholder="user@example.com"
         [control]="emailControl"
       ></app-input>
-      @if((emailControl.hasError("required") && emailControl.touched) || emailControl.hasError("email")){
+      @if((emailControl.hasError("required") || emailControl.hasError("email")) && emailControl.touched){
         <app-error-banner></app-error-banner>
       }
     </div>

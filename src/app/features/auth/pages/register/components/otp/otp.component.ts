@@ -5,6 +5,8 @@ import { StepperComponent } from '../stepper/stepper.component';
 import { InputOtpModule } from 'primeng/inputotp';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../../../shared/components/ui/button/button.component';
+import { AuthService } from '../../../../../../../../dist/auth';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-otp',
@@ -13,15 +15,26 @@ import { ButtonComponent } from '../../../../../../shared/components/ui/button/b
   styleUrl: './otp.component.css',
 })
 export class OtpComponent {
-   private platformId = inject(PLATFORM_ID)
+  private _authService = inject(AuthService)
+  private platformId = inject(PLATFORM_ID)
   private router = inject(Router)
   value = signal<any>('');
   valueLength = computed(()=> this.value().toString().length);
   sentEmail = signal<string>('');
 
   printValue(){
-      console.log(this.value());
-      this.router.navigate(['/register/about']);
+      const code = {
+        email:this.sentEmail(),
+        code:this.value()
+      }
+      if(this.valueLength() == 6){
+        this._authService.confirmEmail(code).subscribe({
+          next:()=>{
+            this.router.navigate(['/register/about']);
+            toast.success("Your email is verified successfully");
+          }
+        })
+      }
   }
   showEmail(){
     if(isPlatformBrowser(this.platformId)){

@@ -10,10 +10,10 @@ export const authRoutes: Routes = [
             {path:'create-password', loadComponent: ()=>import('./pages/register/components/create-password/create-password.component').then(c => c.CreatePasswordComponent), title:"Create Password"},
             {path:'otp', loadComponent: ()=>import('./pages/register/components/otp/otp.component').then(c => c.OtpComponent), title:"OTP"},
         ]},
-        {path:'forgetPassword',loadComponent: ()=>import('./pages/forget-password/forget-password.component').then(c => c.ForgetPassword), title:"Forget Password" , children:[
+        {path:'',loadComponent: ()=>import('./pages/forget-password/forget-password.component').then(c => c.ForgetPassword), title:"Forget Password" , children:[
                 {path:"", redirectTo:"recovery-email", pathMatch:"full"},
                 {path:"recovery-email",loadComponent: ()=>import('./pages/forget-password/components/recovery-email/recovery-email.component').then(c => c.RecoveryEmailComponent), title:"Recovery Email"},
                 {path:"reset-page",loadComponent: ()=>import('./pages/forget-password/components/reset-page/reset-page.component').then(c => c.ResetPageComponent), title:"Reset Page"},
-                {path:"new-password", loadComponent: ()=>import('./pages/forget-password/components/new-password/new-password.component').then(c => c.NewPasswordComponent), title:"New Password"},
+                {path:"reset-password", loadComponent: ()=>import('./pages/forget-password/components/new-password/new-password.component').then(c => c.NewPasswordComponent), title:"New Password"},
             ]},
 ]
