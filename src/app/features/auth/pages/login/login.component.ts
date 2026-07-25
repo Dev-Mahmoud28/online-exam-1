@@ -1,4 +1,4 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/components/ui/button/button.component';
 import { InputComponent } from '../../../../shared/components/business/input/input.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../dist/auth';
 import { isPlatformBrowser } from '@angular/common';
 import { toast, NgxSonnerToaster } from 'ngx-sonner';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,11 @@ import { toast, NgxSonnerToaster } from 'ngx-sonner';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class Login {
+export class Login implements OnDestroy{
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
   private _authService = inject(AuthService);
+  sub = signal<Subscription>(new Subscription());
 
   loginForm:FormGroup = new FormGroup({
     username: new FormControl("",{validators:Validators.required}),
@@ -32,13 +34,17 @@ export class Login {
   }
 
   submitForm(){
-    this._authService.login(this.loginForm.value).subscribe({
+    this.sub.set(this._authService.login(this.loginForm.value).subscribe({
       next:(res)=>{
         if(isPlatformBrowser(this.platformId)){
           localStorage.setItem("token", res.token);
         }
         this.router.navigate(['/home']);
       }
-    })
-  }  
+    }));
+  } 
+
+  ngOnDestroy(): void {
+    this.sub().unsubscribe();
+  }
 }

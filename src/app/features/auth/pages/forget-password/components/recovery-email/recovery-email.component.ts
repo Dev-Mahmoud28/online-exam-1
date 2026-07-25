@@ -1,11 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { InputComponent } from '../../../../../../shared/components/business/input/input.component';
 import { ButtonComponent } from '../../../../../../shared/components/ui/button/button.component';
 import { ErrorBannerComponent } from '../../../../../../shared/components/ui/error-banner/error-banner.component';
 import { AuthService } from '../../../../../../../../dist/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recovery-email',
@@ -17,6 +18,7 @@ export class RecoveryEmailComponent {
   private _authService = inject(AuthService)
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
+  sub = signal<Subscription>(new Subscription());
   emailForm:FormGroup = new FormGroup({
     email: new FormControl("",{validators:[Validators.required, Validators.email]})
   });
@@ -34,12 +36,11 @@ export class RecoveryEmailComponent {
       if(isPlatformBrowser(this.platformId)){
         localStorage.setItem("email", this.emailControl.value);
       }
-      this._authService.forgotPassword(data).subscribe({
-        next:(res)=>{
+      this.sub.set(this._authService.forgotPassword(data).subscribe({
+        next:()=>{
           this.router.navigate(['/reset-page']);
         }
-      })
+      }));
     }
-      
   }
 }

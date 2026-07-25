@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { confirmPassword } from '../../../../../../shared/utils/confirm-password';
 import { InputComponent } from '../../../../../../shared/components/business/input/input.component';
@@ -7,6 +7,8 @@ import { ErrorBannerComponent } from '../../../../../../shared/components/ui/err
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../../../dist/auth';
 import { toast } from 'ngx-sonner';
+import { passwordValidation } from '../../../../../../shared/utils/password-validation';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-password',
@@ -14,15 +16,15 @@ import { toast } from 'ngx-sonner';
   templateUrl: './new-password.component.html',
   styleUrl: './new-password.component.css',
 })
-export class NewPasswordComponent implements OnInit{
+export class NewPasswordComponent implements OnInit, OnDestroy{
 
   private _authService = inject(AuthService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   token = signal<string>("");
-
+  sub = signal<Subscription>(new Subscription());
   passwordForm:FormGroup = new FormGroup({
-    password: new FormControl("", {validators:[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>_\-\\[\]/`~+=;']).{8,}$/)]}),
+    password: new FormControl("", {validators:[Validators.required, Validators.pattern(passwordValidation)]}),
     confirmPassword: new FormControl("", {validators:[Validators.required]})
   }, confirmPassword);
 
@@ -47,15 +49,19 @@ export class NewPasswordComponent implements OnInit{
       confirmPassword: this.confirmPasswordControl.value,
       token: this.token()
     }
-    this._authService.resetPassword(data).subscribe({
-      next:(res)=>{
+    this.sub.set(this._authService.resetPassword(data).subscribe({
+      next:()=>{
         this.router.navigate(["./login"]);
         toast.success("Your password has been updated")
-      }
-    })
+      },
+    }));
   }
 
   ngOnInit(): void {
     this.getToken();
+  }
+
+  ngOnDestroy(): void {
+    this.sub().unsubscribe();
   }
 }

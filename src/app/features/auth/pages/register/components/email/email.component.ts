@@ -35,7 +35,6 @@ export class EmailComponent {
       }
       this._authService.sendEmail(email).subscribe({
         next:(res)=>{
-          console.log(res);
           this.router.navigate(['./register/otp']);
         }
       });
