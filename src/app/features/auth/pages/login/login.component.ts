@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/components/ui/button/button.component';
 import { InputComponent } from '../../../../shared/components/business/input/input.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,8 +6,7 @@ import { ErrorBannerComponent } from '../../../../shared/components/ui/error-ban
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../dist/auth';
 import { isPlatformBrowser } from '@angular/common';
-import { toast, NgxSonnerToaster } from 'ngx-sonner';
-import { Subscription } from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +14,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class Login implements OnDestroy{
+export class Login{
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
   private _authService = inject(AuthService);
-  sub = signal<Subscription>(new Subscription());
+  private destroyRef = inject(DestroyRef)
 
   loginForm:FormGroup = new FormGroup({
     username: new FormControl("",{validators:Validators.required}),
@@ -34,17 +33,13 @@ export class Login implements OnDestroy{
   }
 
   submitForm(){
-    this.sub.set(this._authService.login(this.loginForm.value).subscribe({
+    this._authService.login(this.loginForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next:(res)=>{
         if(isPlatformBrowser(this.platformId)){
           localStorage.setItem("token", res.token);
         }
         this.router.navigate(['/home']);
       }
-    }));
+    });
   } 
-
-  ngOnDestroy(): void {
-    this.sub().unsubscribe();
-  }
 }

@@ -1,5 +1,5 @@
 import { AuthService } from './../../../../../../../../dist/auth';
-import { Component, inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { InputComponent } from '../../../../../../shared/components/business/input/input.component';
 import { ButtonComponent } from '../../../../../../shared/components/ui/button/button.component';
 import { ErrorBannerComponent } from '../../../../../../shared/components/ui/error-banner/error-banner.component';
@@ -9,7 +9,7 @@ import { RegisterFormService } from '../../services/register-form.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { toast } from 'ngx-sonner';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-create-password',
@@ -17,12 +17,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './create-password.component.html',
   styleUrl: './create-password.component.css',
 })
-export class CreatePasswordComponent implements OnDestroy{
+export class CreatePasswordComponent{
   private platformId = inject(PLATFORM_ID);
   private _registerFormService = inject(RegisterFormService);
   private _authService = inject(AuthService);
   private router = inject(Router);
-  sub = signal<Subscription>(new Subscription());
+  private destroyRef = inject(DestroyRef)
   registerForm:FormGroup = this._registerFormService.registerForm;
 
   get passwordControl(){
@@ -40,17 +40,12 @@ export class CreatePasswordComponent implements OnDestroy{
   sendForm(){
     this.getEmail();
     if(!this.registerForm.errors){
-     this.sub.set(this._authService.register(this.registerForm.value).subscribe({
+     this._authService.register(this.registerForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next:(res)=>{
           toast.success("Your Account Has Been Created Successfylly");
           this.router.navigate(["./login"]);
         },
-      }));
+      });
     }
   }
-
-  ngOnDestroy(): void {
-    this.sub().unsubscribe();
-  }
-
 }

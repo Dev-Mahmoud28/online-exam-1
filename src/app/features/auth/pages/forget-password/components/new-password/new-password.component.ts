@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { confirmPassword } from '../../../../../../shared/utils/confirm-password';
 import { InputComponent } from '../../../../../../shared/components/business/input/input.component';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../../../dist/auth';
 import { toast } from 'ngx-sonner';
 import { passwordValidation } from '../../../../../../shared/utils/password-validation';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-new-password',
@@ -16,13 +16,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './new-password.component.html',
   styleUrl: './new-password.component.css',
 })
-export class NewPasswordComponent implements OnInit, OnDestroy{
+export class NewPasswordComponent implements OnInit{
 
   private _authService = inject(AuthService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef)
   token = signal<string>("");
-  sub = signal<Subscription>(new Subscription());
+
   passwordForm:FormGroup = new FormGroup({
     password: new FormControl("", {validators:[Validators.required, Validators.pattern(passwordValidation)]}),
     confirmPassword: new FormControl("", {validators:[Validators.required]})
@@ -36,7 +37,7 @@ export class NewPasswordComponent implements OnInit, OnDestroy{
   }
 
   getToken (){
-    this.activatedRoute.queryParamMap.subscribe({
+    this.activatedRoute.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next:(param)=>{
           this.token.set(param.get("token")!)
         }
@@ -49,19 +50,15 @@ export class NewPasswordComponent implements OnInit, OnDestroy{
       confirmPassword: this.confirmPasswordControl.value,
       token: this.token()
     }
-    this.sub.set(this._authService.resetPassword(data).subscribe({
+    this._authService.resetPassword(data).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next:()=>{
         this.router.navigate(["./login"]);
         toast.success("Your password has been updated")
       },
-    }));
+    });
   }
 
   ngOnInit(): void {
     this.getToken();
-  }
-
-  ngOnDestroy(): void {
-    this.sub().unsubscribe();
   }
 }
