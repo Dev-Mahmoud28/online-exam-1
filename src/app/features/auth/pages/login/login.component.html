@@ -21,7 +21,7 @@
         ></app-input>
       </div>
       <div class="forget text-end">
-        <a class="text-blue-600" routerLink="/forgetPassword">Forgot Your Password?</a>
+        <a class="text-blue-600" routerLink="/recovery-email">Forgot Your Password?</a>
       </div>
       @if(userNameControl.hasError("required") || passwordControl.hasError("required")){
         @if(userNameControl.touched || passwordControl.touched){
@@ -35,3 +35,4 @@
     </p>
   </div>
 </div>
+
