@@ -1,0 +1,54 @@
+<div class="flex gap-2.5 mb-2.5">
+<app-back-button></app-back-button>
+  <app-page-title class="flex-1" [title]="title() + ' Questions'">
+    <i class="fa-regular fa-circle-question text-[45px] font-light"></i>
+  </app-page-title>
+</div>
+
+<div class="mono p-6 flex flex-col gap-3.5">
+  <div class="flex gap-2.5">
+    <div class="flex flex-col gap-2.5 flex-1 border-e pe-2 border-e-gray-200">
+      <div class="title flex flex-1 items-center justify-between">
+        <h4 class="">{{ title() }}</h4>
+        <div class="questions text-gray-500">
+          <span
+            >Question <span class="text-blue-600">{{ currentIndex() + 1 }}</span> of
+            {{ questions().length }}</span
+          >
+        </div>
+      </div>
+      <app-progress-bar [width]="progress()"></app-progress-bar>
+    </div>
+    <div class="timer" [style.--progress]="timeProgress() + '%'">
+      <span> {{timer()}} </span>
+    </div>
+  </div>
+
+  @if (currentQuestion(); as question) {
+    <div class="question-container flex flex-col gap-2.5">
+      <h2 class="ques-Title text-2xl text-blue-600">{{ question.text }}</h2>
+      <div class="answers">
+        @for (answer of question.answers; track answer.id) {
+          <label class="bg-gray-50 hover:bg-gray-100 p-4 block">
+            <input (click)="selectedAnswer(question.id, answer.id)" type="radio" name="answer" [value]="answer.id" />
+            {{ answer.text }}
+          </label>
+        }
+      </div>
+    </div>
+  }
+  <div class="buttons flex items-center gap-4">
+    <app-button
+      (click)="previousQuestion()"
+      class="flex-1"
+      [styles]="{ 'background-color': '#E5E7EB', color: '#9CA3AF' }"
+    >
+      <i class="fa-solid fa-angle-left"></i>
+      <span>Previous</span>
+    </app-button>
+    <app-button (click)="nextQuestion()" class="flex-1">
+      <span>Next</span>
+      <i class="fa-solid fa-angle-right"></i>
+    </app-button>
+  </div>
+</div>

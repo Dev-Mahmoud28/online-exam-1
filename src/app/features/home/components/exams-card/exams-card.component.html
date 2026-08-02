@@ -1,0 +1,66 @@
+<div class="box bg-blue-50 p-4 flex flex-col md:flex-row items-center gap-1.5 mono relative overflow-hidden group">
+  <div
+    class="image size-[100px] bg-blue-100 border flex justify-center items-center border-blue-300"
+  >
+    <img [src]="imgSrc()" class="w-full" [alt]="title()" />
+  </div>
+  <div class="details flex flex-1 flex-col gap-1.5">
+    <div class="title flex flex-col md:flex-row justify-between">
+      <h3 class="text-blue-600 text-[20px] font-semibold">{{ title() }}</h3>
+      <div class="icons flex items-center gap-2">
+        <span class="flex gap-1.5 items-center">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_41826_308)">
+              <path
+                d="M6.8175 6.75C6.99383 6.24875 7.34186 5.82608 7.79997 5.55685C8.25807 5.28762 8.79667 5.1892 9.32038 5.27903C9.84409 5.36886 10.3191 5.64114 10.6613 6.04765C11.0035 6.45415 11.1908 6.96864 11.19 7.5C11.19 9 8.94 9.75 8.94 9.75M9 12.75H9.0075M16.5 9C16.5 13.1421 13.1421 16.5 9 16.5C4.85786 16.5 1.5 13.1421 1.5 9C1.5 4.85786 4.85786 1.5 9 1.5C13.1421 1.5 16.5 4.85786 16.5 9Z"
+                stroke="#1F2937"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_41826_308">
+                <rect width="18" height="18" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+          <p class="text-[14px]">{{ questionsCount() }} Question</p>
+        </span>
+        <span class="flex gap-1.5 items-center">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.5 1.5H10.5M9 10.5L11.25 8.25M15 10.5C15 13.8137 12.3137 16.5 9 16.5C5.68629 16.5 3 13.8137 3 10.5C3 7.18629 5.68629 4.5 9 4.5C12.3137 4.5 15 7.18629 15 10.5Z"
+              stroke="#1F2937"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p class="text-[14px]">{{ duration() }} Minutes</p>
+        </span>
+      </div>
+    </div>
+    <p class="text-gray-500 text-[14px]">
+      {{ description() }}
+    </p>
+  </div>
+  <app-button class="absolute -bottom-10 right-4 group-hover:bottom-4 transition-all duration-1000" [styles]="{ padding: '6px 16px' }">
+    <div class="flex items-center gap-1.5">
+      <span>Start</span>
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+  </app-button>
+</div>

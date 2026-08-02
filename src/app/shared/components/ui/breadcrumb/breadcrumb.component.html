@@ -1,0 +1,10 @@
+<div class="card flex text-gray-400">
+  <p-breadcrumb [model]="items()" [style]="{'padding':'6px'}">
+    <ng-template #item let-item >
+      <a [routerLink]="item.url" routerLinkActive="text-blue-600">
+        <span class="text-[14px]">{{item.label}}</span>
+      </a>
+    </ng-template>
+    <ng-template #separator> / </ng-template>
+  </p-breadcrumb>
+</div>
