@@ -1,10 +1,11 @@
 import {Diplomas} from './../../services/diplomas/interfaces/diplomas.interface';
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { PageTitleComponent } from "../../../../shared/components/ui/page-title/page-title.component";
 import { DiplomasCardComponent } from "../../components/diplomas-card/diplomas-card.component";
 import { DiplomasService } from '../../services/diplomas/diplomas.service';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb/breadcrumb.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-diplomas',
@@ -15,6 +16,7 @@ import { BreadcrumbService } from '../../../../shared/services/breadcrumb/breadc
 export class DiplomasComponent implements OnInit{
   private _diplomasService = inject(DiplomasService);
   private _breadcrumbService = inject(BreadcrumbService);
+  private destroyRef = inject(DestroyRef) 
   diplomas = signal<Diplomas[]>([]);
   visible = signal<number>(6);
   showedDiplomas = computed(()=>{
@@ -30,7 +32,7 @@ export class DiplomasComponent implements OnInit{
   }
 
   getDiplomas(){
-    this._diplomasService.getDiplomas().subscribe({
+    this._diplomasService.getDiplomas().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next:(res)=>{
         this.diplomas.set(res.payload.data);
       }
