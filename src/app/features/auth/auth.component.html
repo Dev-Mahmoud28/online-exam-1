@@ -1,44 +1,116 @@
 <div class="grid sm:grid-cols-1 md:grid-cols-2 h-dvh">
-    <div class="info hidden md:flex md:flex-col gap-12 p-12">
-        <h2 class="logo text-blue-600 text-[20px] font-bold flex items-center gap-2.5">
-            <span class="icon p-1.5">
-                <i class="fa-solid fa-folder"></i>
-            </span>
-            <span>Exam App</span>
-        </h2>
-        <div class="details flex flex-col gap-10">
-            <h1 class="text-2xl font-bold">Empower your learning journey with our smart exam platform.</h1>
-            <ul class="list flex flex-col gap-4">
-                <li class="flex items-start gap-5">
-                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa-solid fa-brain"></i></span>
-                    <div class="text">
-                        <h3 class="text-blue-600">Tailored Diplomas</h3>
-                        <h4 class="text-gray-700">Choose from specialized tracks like Frontend, Backend, and Mobile Development.</h4>
-                    </div>
-                </li>
-                <li class="flex items-start gap-5">
-                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa fa-book-open"></i></span>
-                    <div class="text">
-                        <h3 class="text-blue-600">Focused Exams</h3>
-                        <h4 class="text-gray-700">Access topic-specific tests including HTML, CSS, JavaScript, and more.</h4>
-                    </div>
-                </li>
-                <li class="flex items-start gap-5">
-                    <span class="icon text-blue-600 border border-blue-600 p-1.5 "><i class="fa-regular fa-rectangle-list"></i></span>
-                    <div class="text">
-                        <h3 class="text-blue-600">Smart Multi-Step Forms</h3>
-                        <h4 class="text-gray-700">Choose from specialized tracks like Frontend, Backend, and Mobile Development.</h4>
-                    </div>
-                </li>
-            </ul>
-        </div>
+  <div class="info hidden md:flex md:flex-col gap-12 p-12">
+    <h2 class="logo mono text-blue-600 text-[20px] font-bold flex items-center gap-2.5">
+      <span class="icon p-1.5">
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M17.2 18.5996L14.4 22.0996L17.2 25.5996" fill="#155DFC" />
+          <path d="M22.8 18.5996L25.6 22.0996L22.8 25.5996" fill="#155DFC" />
+          <path
+            d="M31.2 31.8996C31.9426 31.8996 32.6548 31.6046 33.1799 31.0795C33.705 30.5544 34 29.8422 34 29.0996V15.0996C34 14.357 33.705 13.6448 33.1799 13.1197C32.6548 12.5946 31.9426 12.2996 31.2 12.2996H20.14C19.6717 12.3042 19.2098 12.1913 18.7964 11.9711C18.3831 11.751 18.0315 11.4307 17.774 11.0396L16.64 9.35961C16.385 8.97247 16.038 8.65468 15.6299 8.43476C15.2218 8.21485 14.7656 8.09969 14.302 8.09961H8.8C8.05739 8.09961 7.3452 8.39461 6.8201 8.91971C6.295 9.44481 6 10.157 6 10.8996V29.0996C6 29.8422 6.295 30.5544 6.8201 31.0795C7.3452 31.6046 8.05739 31.8996 8.8 31.8996H31.2Z"
+            fill="#155DFC"
+          />
+          <path
+            d="M17.2 18.5996L14.4 22.0996L17.2 25.5996M22.8 18.5996L25.6 22.0996L22.8 25.5996M31.2 31.8996C31.9426 31.8996 32.6548 31.6046 33.1799 31.0795C33.705 30.5544 34 29.8422 34 29.0996V15.0996C34 14.357 33.705 13.6448 33.1799 13.1197C32.6548 12.5946 31.9426 12.2996 31.2 12.2996H20.14C19.6717 12.3042 19.2098 12.1913 18.7964 11.9711C18.3831 11.751 18.0315 11.4307 17.774 11.0396L16.64 9.35961C16.385 8.97247 16.038 8.65468 15.6299 8.43476C15.2218 8.21485 14.7656 8.09969 14.302 8.09961H8.8C8.05739 8.09961 7.3452 8.39461 6.8201 8.91971C6.295 9.44481 6 10.157 6 10.8996V29.0996C6 29.8422 6.295 30.5544 6.8201 31.0795C7.3452 31.6046 8.05739 31.8996 8.8 31.8996H31.2Z"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      <span>Exam App</span>
+    </h2>
+    <div class="details flex flex-col gap-10">
+      <h1 class="text-2xl font-bold">
+        Empower your learning journey with our smart exam platform.
+      </h1>
+      <ul class="list mono flex flex-col gap-4">
+        <li class="flex items-start gap-5">
+          <span class="icon text-blue-600 border border-blue-600 p-1.5"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18.0001V5.00013M12 18.0001C12.0006 18.5469 12.1132 19.0877 12.331 19.5892C12.5488 20.0907 12.8671 20.5422 13.2662 20.9159C13.6654 21.2896 14.1369 21.5774 14.6516 21.7617C15.1664 21.9461 15.7134 22.0229 16.259 21.9875C16.8046 21.9521 17.3372 21.8052 17.8238 21.5559C18.3104 21.3066 18.7407 20.9602 19.0882 20.5381C19.4357 20.116 19.693 19.6271 19.8441 19.1017C19.9953 18.5762 20.0371 18.0254 19.967 17.4831M12 18.0001C11.9994 18.5469 11.8868 19.0877 11.669 19.5892C11.4512 20.0907 11.1329 20.5422 10.7338 20.9159C10.3346 21.2896 9.86313 21.5774 9.34839 21.7617C8.83364 21.9461 8.28658 22.0229 7.74098 21.9875C7.19538 21.9521 6.66283 21.8052 6.17622 21.5559C5.68961 21.3066 5.25927 20.9602 4.91179 20.5381C4.5643 20.116 4.30704 19.6271 4.15589 19.1017C4.00474 18.5762 3.96292 18.0254 4.033 17.4831M12 5.00013C12 4.53996 12.1058 4.08595 12.3093 3.67322C12.5129 3.2605 12.8086 2.90012 13.1737 2.61998C13.5387 2.33983 13.9634 2.14743 14.4147 2.05765C14.866 1.96787 15.332 1.98312 15.7765 2.10223C16.221 2.22133 16.6321 2.44109 16.9781 2.74451C17.324 3.04793 17.5956 3.42687 17.7717 3.85203C17.9478 4.27718 18.0237 4.73714 17.9936 5.19633C17.9635 5.65551 17.8281 6.10162 17.598 6.50013M12 5.00013C12 4.53996 11.8942 4.08595 11.6907 3.67322C11.4871 3.2605 11.1914 2.90012 10.8263 2.61998C10.4613 2.33983 10.0366 2.14743 9.5853 2.05765C9.13396 1.96787 8.66803 1.98312 8.22353 2.10223C7.77904 2.22133 7.3679 2.44109 7.02193 2.74451C6.67596 3.04793 6.40442 3.42687 6.22833 3.85203C6.05224 4.27718 5.97632 4.73714 6.00643 5.19633C6.03655 5.65551 6.17189 6.10162 6.402 6.50013M15 13.0001C14.1348 12.7472 13.3748 12.2208 12.834 11.4996C12.2932 10.7785 12.0005 9.90154 12 9.00013C11.9995 9.90154 11.7068 10.7785 11.166 11.4996C10.6252 12.2208 9.8652 12.7472 9 13.0001M17.997 5.12513C18.5848 5.27627 19.1305 5.55918 19.5928 5.95244C20.055 6.34571 20.4218 6.83901 20.6652 7.39498C20.9086 7.95096 21.0222 8.55503 20.9976 9.16145C20.973 9.76786 20.8107 10.3607 20.523 10.8951M18 18.0001C18.8805 18.0001 19.7364 17.7095 20.4349 17.1735C21.1335 16.6375 21.6356 15.8859 21.8635 15.0354C22.0914 14.1849 22.0323 13.283 21.6954 12.4695C21.3585 11.656 20.7625 10.9764 20 10.5361M6 18.0001C5.1195 18.0001 4.26361 17.7095 3.56507 17.1735C2.86653 16.6375 2.36437 15.8859 2.13648 15.0354C1.90858 14.1849 1.96768 13.283 2.30462 12.4695C2.64155 11.656 3.23748 10.9764 4 10.5361M6.003 5.12513C5.4152 5.27627 4.8695 5.55918 4.40723 5.95244C3.94496 6.34571 3.57824 6.83901 3.33484 7.39498C3.09145 7.95096 2.97776 8.55503 3.00239 9.16145C3.02702 9.76786 3.18932 10.3607 3.477 10.8951"
+                stroke="#155DFC"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <div class="text">
+            <h3 class="text-blue-600">Tailored Diplomas</h3>
+            <h4 class="text-gray-700">
+              Choose from specialized tracks like Frontend, Backend, and Mobile Development.
+            </h4>
+          </div>
+        </li>
+        <li class="flex items-start gap-5">
+          <span class="icon text-blue-600 border border-blue-600 p-1.5"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21V7M12 21C12 20.2044 11.6839 19.4413 11.1213 18.8787C10.5587 18.3161 9.79565 18 9 18H3C2.73478 18 2.48043 17.8946 2.29289 17.7071C2.10536 17.5196 2 17.2652 2 17V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7M12 21C12 20.2044 12.3161 19.4413 12.8787 18.8787C13.4413 18.3161 14.2044 18 15 18H21C21.2652 18 21.5196 17.8946 21.7071 17.7071C21.8946 17.5196 22 17.2652 22 17V15.7M12 7C12 5.93913 12.4214 4.92172 13.1716 4.17157C13.9217 3.42143 14.9391 3 16 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V6M16 12L18 14L22 10"
+                stroke="#155DFC"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <div class="text">
+            <h3 class="text-blue-600">Focused Exams</h3>
+            <h4 class="text-gray-700">
+              Access topic-specific tests including HTML, CSS, JavaScript, and more.
+            </h4>
+          </div>
+        </li>
+        <li class="flex items-start gap-5">
+          <span class="icon text-blue-600 border border-blue-600 p-1.5"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 12H12.01M17 12H17.01M7 12H7.01M4 6H20C21.1046 6 22 6.89543 22 8V16C22 17.1046 21.1046 18 20 18H4C2.89543 18 2 17.1046 2 16V8C2 6.89543 2.89543 6 4 6Z"
+                stroke="#155DFC"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <div class="text">
+            <h3 class="text-blue-600">Smart Multi-Step Forms</h3>
+            <h4 class="text-gray-700">
+              Choose from specialized tracks like Frontend, Backend, and Mobile Development.
+            </h4>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="form p-14 flex flex-col justify-center">
-        <router-outlet></router-outlet>
-    </div>
+  </div>
+  <div class="form p-14 flex flex-col justify-center">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<ngx-sonner-toaster 
-  position="bottom-right"
-  theme="dark"
-  richColors
-  />
+<ngx-sonner-toaster position="bottom-right" theme="dark" richColors />

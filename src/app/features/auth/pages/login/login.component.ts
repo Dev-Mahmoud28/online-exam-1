@@ -37,8 +37,10 @@ export class Login{
       next:(res)=>{
         if(isPlatformBrowser(this.platformId)){
           localStorage.setItem("token", res.token);
+          localStorage.setItem("firstname", res.firstname);
+          localStorage.setItem("email", res.email);
         }
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/diplomas']);
       }
     });
   } 

@@ -1,0 +1,11 @@
+<div class="card relative group overflow-hidden">
+  <img [src]="imgSrc()" class="w-[336] h-[448px] block object-cover" [alt]="title()" />
+  <div class="flex flex-col mono bg-blue-600/75 p-4 text-white absolute bottom-4 left-4 right-4">
+    <h2 class="title font-bold mb-1.5">
+      {{ title() }}
+    </h2>
+    <p class="text-[14px] overflow-hidden h-20 font-light max-h-[278px] group-hover:h-[278px]  transition-all duration-500">
+      {{ describtion() }}
+    </p>
+  </div>
+</div>

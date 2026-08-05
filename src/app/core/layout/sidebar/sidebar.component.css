@@ -1,0 +1,5 @@
+@reference "../../../../styles.css";
+
+.active {
+    @apply text-blue-600 bg-blue-100 border border-blue-600;
+}

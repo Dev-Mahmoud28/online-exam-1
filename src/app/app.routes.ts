@@ -7,8 +7,9 @@ export const routes: Routes = [
         loadChildren:()=>import('./features/auth/auth.routes').then(c=>c.authRoutes),
         canActivate:[loggedOutGuard]
     },
-    {path:"home",
-        title:"Home",
-        loadComponent:()=>import('./features/home/home.component').then(c=>c.HomeComponent)
-        ,canActivate:[loggedInGuard]}
+    {path:""
+        ,loadComponent:()=>import("./core/layout/dashboard/dashboard.component").then(c=>c.DashboardComponent)
+        ,loadChildren:()=>import("./core/layout/dashboard/dashboard.routes").then(c=>c.dashboardRoutes)
+        // ,canActivate:[loggedInGuard]
+    }
 ];

@@ -1,0 +1,28 @@
+.timer {
+  --progress: 75%;
+
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background:
+    conic-gradient(#2563eb var(--progress), #dbeafe 0);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.timer::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+}
+
+.timer span {
+  position: relative;
+  z-index: 1;
+}
