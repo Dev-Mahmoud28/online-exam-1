@@ -3,10 +3,15 @@
 html{
     font-family: "Inter", sans-serif;
 }
+body{
+  min-height: 100vh;
+}
 .mono{
     font-family: "Geist Mono", monospace;
 }
-
+.inter{
+  font-family: "Inter", sans-serif;
+}
 .card .p-inputtext:enabled:focus{
     border-color: #155DFC;
     color: #155DFC;
@@ -37,4 +42,9 @@ html{
 
 [data-sonner-toast][data-type="error"] [data-icon] {
   color: #DC2626 !important;
+}
+
+.p-dialog-mask {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }

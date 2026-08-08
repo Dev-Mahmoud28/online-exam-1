@@ -1,0 +1,14 @@
+:host ::ng-deep .p-dialog{
+    border-radius: none;
+}
+
+:host ::ng-deep .p-dialog-header{
+    flex-direction: column-reverse;
+    padding: 10px;
+    align-items: stretch;
+    gap: 10px;
+}
+
+:host ::ng-deep .p-dialog-header-actions{
+    justify-content: end;
+}

@@ -1,0 +1,35 @@
+<div class="flex gap-2.5 mb-2.5">
+  <app-back-button></app-back-button>
+  <app-page-title class="flex-1" title="Account Setting">
+    <i class="fa-regular fa-user text-3xl"></i>
+  </app-page-title>
+</div>
+
+<div class="flex gap-2.5 h-full">
+  <aside class="mono w-[282px] p-6 bg-white">
+    <ul class="flex flex-col h-full gap-2.5">
+      <li class="px-4 py-2.5 text-gray-500 cursor-pointer" routerLink="/account/profile" routerLinkActive="active">
+        <a class="flex gap-2.5 items-center">
+          <i class="fa-regular fa-circle-user"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li class="px-4 py-2.5 text-gray-500 cursor-pointer" routerLink="/account/change-password" routerLinkActive="active">
+        <a class="flex gap-2.5 items-center">
+          <i class="fa-solid fa-lock"></i>
+          <span>Change Password</span>
+        </a>
+      </li>
+      <li
+        (click)="logout()"
+        class="flex items-center mt-auto gap-2 px-4 py-2.5 font-normal text-red-600 bg-red-50 cursor-pointer"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket rotate-180"></i>
+        <span>Logout</span>
+      </li>
+    </ul>
+  </aside>
+  <div class="flex-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -10,6 +10,6 @@ export const routes: Routes = [
     {path:""
         ,loadComponent:()=>import("./core/layout/dashboard/dashboard.component").then(c=>c.DashboardComponent)
         ,loadChildren:()=>import("./core/layout/dashboard/dashboard.routes").then(c=>c.dashboardRoutes)
-        // ,canActivate:[loggedInGuard]
+        ,canActivate:[loggedInGuard]
     }
 ];

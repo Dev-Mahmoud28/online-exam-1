@@ -14,6 +14,7 @@ export class InputComponent implements AfterViewInit{
     label = input.required<string>();
     type = input<"text" | "email" | "password" | "number" | "tel">("text");
     placeholder = input<string>("");
+    value = input<string>("");
     control = input.required<FormControl>();
     id = input.required<string>();
     showPassword = signal<boolean>(false);
