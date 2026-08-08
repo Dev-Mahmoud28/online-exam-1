@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../../../shared/components/business/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/ui/button/button.component';
 import { AccountService } from '../../services/account/account.service';
@@ -8,6 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { toast } from 'ngx-sonner';
 import { ErrorBannerComponent } from "../../../../shared/components/ui/error-banner/error-banner.component";
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb/breadcrumb.service';
+import { passwordValidation } from '../../../../shared/utils/password-validation';
 
 @Component({
   selector: 'app-change-password',
@@ -21,9 +22,9 @@ export class ChangePasswordComponent implements OnInit{
   private destroyRef = inject(DestroyRef)
 
   passwordForm: FormGroup = new FormGroup({
-    currentPassword: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
+    currentPassword: new FormControl('', Validators.required),
+    password: new FormControl('', {validators:[Validators.required, Validators.pattern(passwordValidation)]}),
+    confirmPassword: new FormControl('', Validators.required),
   },confirmPassword);
 
   get currentPassword() {

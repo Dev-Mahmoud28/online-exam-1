@@ -25,6 +25,7 @@ import { InputOtp } from 'primeng/inputotp';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb/breadcrumb.service';
+import { ErrorBannerComponent } from "../../../../shared/components/ui/error-banner/error-banner.component";
 
 @Component({
   selector: 'app-profile',
@@ -35,7 +36,8 @@ import { BreadcrumbService } from '../../../../shared/services/breadcrumb/breadc
     ButtonComponent,
     DialogModule,
     InputOtp,
-  ],
+    ErrorBannerComponent
+],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -50,11 +52,11 @@ export class ProfileComponent implements OnInit {
   username = signal<string>('');
   email = signal<string>('');
   profileForm: FormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    phone: new FormControl(''),
-    email: new FormControl('', Validators.email),
-    otp: new FormControl(''),
+    firstName: new FormControl('', {validators:[Validators.required]}),
+    lastName: new FormControl('', {validators:[Validators.required]}),
+    phone: new FormControl('', {validators:[Validators.required]}),
+    email: new FormControl('',{validators:[Validators.required, Validators.email]}),
+    otp: new FormControl('', {validators:[Validators.required]}),
   });
 
   get firstnameControl() {
@@ -68,6 +70,10 @@ export class ProfileComponent implements OnInit {
   }
   get emailControl() {
     return this.profileForm.get('email') as FormControl;
+  }
+
+  get otpControl(){
+    return this.profileForm.get('otp') as FormControl;
   }
 
   setBreadcrumb(){
