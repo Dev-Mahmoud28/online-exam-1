@@ -20,8 +20,7 @@ export class SidebarComponent {
 
   logout(){
     if(isPlatformBrowser(this.platformId)){
-      localStorage.removeItem("token");
-      localStorage.removeItem("email");
+      localStorage.clear();
       this.router.navigate(["/login"]);
     }
   }

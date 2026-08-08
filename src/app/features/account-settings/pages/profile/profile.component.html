@@ -1,0 +1,154 @@
+<form [formGroup]="profileForm" class="mono flex flex-col gap-4 p-3">
+  <div class="names flex gap-2.5">
+    <app-input
+      class="flex-1"
+      [type]="'text'"
+      label="Firstname"
+      id="firstname"
+      [control]="firstnameControl"
+    ></app-input>
+    <app-input
+      class="flex-1"
+      [type]="'text'"
+      label="Lastname"
+      id="lastname"
+      [control]="lastnameControl"
+    ></app-input>
+  </div>
+  <div class="username">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      disabled
+      class="bg-gray-100 border border-gray-200 p-2.5 w-full block outline-0 text-gray-600"
+      [value]="username()"
+    />
+  </div>
+  <div class="email relative">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      id="email"
+      readonly
+      class="border border-gray-200 p-2.5 w-full block outline-0"
+      [value]="email()"
+    />
+    <button
+      (click)="showEmailModal()"
+      class="icon text-blue-600 cursor-pointer flex items-center gap-1.5 absolute top-0 right-0"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_41826_672)">
+          <path
+            d="M8.66666 13.9999H14M10 3.33326L12.6667 5.99993M14.116 4.54126C14.4685 4.18888 14.6665 3.71091 14.6666 3.2125C14.6666 2.71409 14.4687 2.23607 14.1163 1.8836C13.7639 1.53112 13.286 1.33307 12.7876 1.33301C12.2892 1.33295 11.8111 1.53088 11.4587 1.88326L2.56133 10.7826C2.40654 10.9369 2.29207 11.127 2.228 11.3359L1.34733 14.2373C1.3301 14.2949 1.3288 14.3562 1.34356 14.4145C1.35833 14.4728 1.38861 14.5261 1.43119 14.5686C1.47378 14.6111 1.52708 14.6413 1.58544 14.656C1.64379 14.6707 1.70504 14.6693 1.76266 14.6519L4.66466 13.7719C4.87344 13.7084 5.06345 13.5947 5.218 13.4406L14.116 4.54126Z"
+            stroke="#155DFC"
+            stroke-width="1.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_41826_672">
+            <rect width="16" height="16" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+      <span>Change</span>
+    </button>
+    <p-dialog [modal]="true" [(visible)]="emailModal" [style]="{ width: '36.1875rem' }">
+      <ng-template pTemplate="header">
+        <div
+          class="stepper mx-3.5 flex-1 flex justify-between items-center relative after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:content-[''] after:w-full after:border after:border-dashed after:border-blue-600"
+        >
+          <div class="relative z-10 border-4 border-white">
+            <span class="block w-5 h-5 bg-blue-600 border-4 border-blue-200 rotate-45"></span>
+          </div>
+          <div class="relative z-10 border-4 border-white">
+            <span class="block w-3.5 h-3.5 bg-white border border-blue-600 rotate-45"></span>
+          </div>
+        </div>
+      </ng-template>
+      <div class="flex flex-col gap-2.5">
+        <div class="p-9 pt-0 flex flex-col gap-2.5">
+          <h2 class="inter font-bold text-3xl">Change Email</h2>
+          <h3 class="inter font-bold text-2xl text-blue-600">Enter your new email</h3>
+          <app-input
+            [type]="'email'"
+            id="email"
+            label="Email"
+            placeholder="user@example.com"
+            [control]="emailControl"
+          ></app-input>
+        </div>
+        <div class="nextBtn p-6 border-t border-t-gray-200">
+          <app-button (click)="sendNewEmail()">
+            <span>Next</span>
+            <i class="fa fa-angle-right"></i>
+          </app-button>
+        </div>
+      </div>
+    </p-dialog>
+    <p-dialog [modal]="true" [(visible)]="otpModal" [style]="{ width: '36.1875rem' }">
+      <ng-template pTemplate="header">
+        <div
+          class="stepper mx-3.5 flex-1 flex justify-between items-center relative after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:content-[''] after:w-full after:border after:border-blue-600"
+        >
+          <div class="relative z-10 border-4 border-white">
+            <span class="block w-3.5 h-3.5 bg-blue-600 rotate-45"></span>
+          </div>
+          <div class="relative z-10 border-4 border-white">
+            <span class="block w-5 h-5 bg-blue-600 border-4 border-blue-200 rotate-45"></span>
+          </div>
+        </div>
+      </ng-template>
+
+      <div class="flex flex-col gap-2.5">
+        <div class="p-9 pt-0 flex flex-col gap-2.5">
+          <h2 class="inter font-bold text-3xl">Change Email</h2>
+          <h3 class="inter font-bold text-2xl text-blue-600">Verify OTP</h3>
+          <p class="text-gray-500">
+            Please enter the 6-digits code we have sent to:
+            <span class="text-gray-800">{{ emailControl.value }}</span>
+            <span (click)="showEmailModal()" class="text-blue-600 ms-1.5 underline cursor-pointer"
+              >Edit</span
+            >
+          </p>
+          <div class="card flex justify-center">
+            <p-inputotp formControlName="otp" [length]="6" />
+          </div>
+        </div>
+        <div class="nextBtn p-6 border-t border-t-gray-200">
+          <app-button (click)="confirmEmail()" [disabled]="otpControl.invalid">
+            Verify Code
+          </app-button>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+  <div class="phone">
+    <app-input [type]="'tel'" label="Phone" id="phone" [control]="phoneControl"></app-input>
+  </div>
+  @if (
+    (firstnameControl.hasError('required') && firstnameControl.touched) ||
+    (lastnameControl.hasError('required') && lastnameControl.touched) ||
+    (phoneControl.hasError('required') && phoneControl.touched)
+  ) {
+    <app-error-banner></app-error-banner>
+  }
+  <div class="buttons flex gap-2.5">
+    <app-button
+      (click)="deleteAccount()"
+      class="flex-1"
+      [styles]="{ 'background-color': '#FEF2F2', color: '#DC2626' }"
+      >Delete My Account</app-button
+    >
+    <app-button class="flex-1" (click)="setNewprofile()">Save Changes</app-button>
+  </div>
+</form>
