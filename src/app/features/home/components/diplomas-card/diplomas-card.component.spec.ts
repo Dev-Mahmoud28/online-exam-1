@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiplomasCardComponent } from './diplomas-card.component';
+import { By } from '@angular/platform-browser';
 
 describe('DiplomasCardComponent', () => {
   let component: DiplomasCardComponent;
@@ -13,10 +14,28 @@ describe('DiplomasCardComponent', () => {
 
     fixture = TestBed.createComponent(DiplomasCardComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.componentRef.setInput('imgSrc', 'image.jpg');
+    fixture.componentRef.setInput('title', 'Diploma');
+    fixture.componentRef.setInput('describtion', 'hello');
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render Image',()=>{
+    const image = fixture.debugElement.query(By.css('img'));
+    expect(image.nativeElement.getAttribute('src')).toBe('image.jpg');
+    expect(image.nativeElement.getAttribute('alt')).toBe('Diploma')
+  });
+
+  it('should render title',()=>{
+    const title = fixture.debugElement.query(By.css('h2'));
+    expect(title.nativeElement.textContent).toContain('Diploma');
+  });
+  it('should render describtion',()=>{
+    const describtion = fixture.debugElement.query(By.css('p'));
+    expect(describtion.nativeElement.textContent).toContain('hello');
   });
 });
