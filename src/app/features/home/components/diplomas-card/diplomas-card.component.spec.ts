@@ -26,8 +26,8 @@ describe('DiplomasCardComponent', () => {
 
   it('should render Image',()=>{
     const image = fixture.debugElement.query(By.css('img'));
-    expect(image.nativeElement.getAttribute('src')).toBe('image.jpg');
-    expect(image.nativeElement.getAttribute('alt')).toBe('Diploma')
+    expect(image.attributes['src']).toBe('image.jpg');
+    expect(image.attributes['alt']).toBe('Diploma');
   });
 
   it('should render title',()=>{
