@@ -34,7 +34,9 @@ export class CreatePasswordComponent{
 
  getEmail(){
     if(isPlatformBrowser(this.platformId)){
-      this.registerForm.value.email = localStorage.getItem("email");
+      this.registerForm.get('email')?.setValue(
+      localStorage.getItem('email')
+    );
     }
  }
   sendForm(){
