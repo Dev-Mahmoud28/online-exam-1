@@ -36,7 +36,7 @@
     />
     <button
       (click)="showEmailModal()"
-      class="icon text-blue-600 cursor-pointer flex items-center gap-1.5 absolute top-0 right-0"
+      class="change-email icon text-blue-600 cursor-pointer flex items-center gap-1.5 absolute top-0 right-0"
     >
       <svg
         width="16"
@@ -145,10 +145,10 @@
   <div class="buttons flex gap-2.5">
     <app-button
       (click)="deleteAccount()"
-      class="flex-1"
+      class="delete flex-1"
       [styles]="{ 'background-color': '#FEF2F2', color: '#DC2626' }"
       >Delete My Account</app-button
     >
-    <app-button class="flex-1" (click)="setNewprofile()">Save Changes</app-button>
+    <app-button class="save flex-1" (click)="setNewprofile()">Save Changes</app-button>
   </div>
 </form>
