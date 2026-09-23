@@ -9,9 +9,9 @@
   <div class="flex gap-2.5">
     <div class="flex flex-col gap-2.5 flex-1">
       <div class="title flex flex-1 items-center justify-between">
-        <h4 class="text-gray-500">{{ examTitle() }}</h4>
+        <h4 class="exam-title text-gray-500">{{ examTitle() }}</h4>
         <div class="questions text-gray-500">
-          <span
+          <span class="questions-count"
             >Question <span class="text-blue-600">{{ questionsNumber() }}</span> of
             {{ questionsNumber() }}
           </span>
@@ -40,7 +40,7 @@
         </div>
       </div>
       @if (wrongAnswers().length == 0) {
-        <p class="text-3xl self-center">Perfect! 🎉 You answered every question correctly.</p>
+        <p class="perfect text-3xl self-center">Perfect! 🎉 You answered every question correctly.</p>
       } @else {
         <ul
           class="wrong-answer flex-1 border border-blue-200 border-dashed p-2.5 h-[250px] lg:h-[514px] scrollbar overflow-auto"
@@ -68,13 +68,13 @@
                       />
                     </svg>
                   </span>
-                  <span class="text-[14px]">{{ answer.selectedAnswer?.text || 'Empty Answer'}}</span>
+                  <span class="selected-answer text-[14px]">{{ answer.selectedAnswer?.text || 'Empty Answer'}}</span>
                 </div>
                 <div class="correct bg-green-50 flex items-center gap-1.5 p-4">
                   <span>
                     <i class="fa-regular fa-circle text-green-600"></i>
                   </span>
-                  <span class="text-[14px]">{{ answer.correctAnswer.text }}</span>
+                  <span class="correct-answer text-[14px]">{{ answer.correctAnswer.text }}</span>
                 </div>
               </div>
             </li>
@@ -87,7 +87,7 @@
   <div class="buttons flex items-center gap-4">
     <app-button
       (click)="restart()"
-      class="flex-1"
+      class="restart flex-1"
       [styles]="{ 'background-color': '#E5E7EB', color: '#000' }"
     >
       <div class="flex gap-2.5 items-center justify-center">
@@ -95,7 +95,7 @@
         <span>Restart</span>
       </div>
     </app-button>
-    <app-button (click)="explore()" class="flex-1">
+    <app-button (click)="explore()" class="explore flex-1">
       <div class="flex gap-2.5 items-center justify-center">
         <span>
           <svg

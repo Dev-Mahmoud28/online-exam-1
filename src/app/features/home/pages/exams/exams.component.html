@@ -1,4 +1,4 @@
-  <div class="flex gap-2.5 mb-2.5">
+<div class="flex gap-2.5 mb-2.5">
   <app-back-button></app-back-button>
   <app-page-title class="flex-1" [title]="diplomaTitle()">
     <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,13 +29,12 @@
 @if (visible() < examsList().length) {
   <button
     (click)="showMore()"
-    class="text-gray-600 flex flex-col mx-auto mt-1.5 items-center gap-1.5 mono cursor-pointer"
+    class="show-more text-gray-600 flex flex-col mx-auto mt-1.5 items-center gap-1.5 mono cursor-pointer"
   >
     <p>Scroll to view more</p>
     <i class="fa-solid fa-angle-down"></i>
   </button>
 }
 @if (visible() == examsList().length) {
-  <p class="text-gray-600 text-center my-1.5 mono">End of list</p>
+  <p class="end-list text-gray-600 text-center my-1.5 mono">End of list</p>
 }
-
