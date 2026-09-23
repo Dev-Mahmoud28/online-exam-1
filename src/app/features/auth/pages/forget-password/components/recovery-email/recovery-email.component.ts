@@ -18,7 +18,6 @@ export class RecoveryEmailComponent {
   private _authService = inject(AuthService)
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
-  sub = signal<Subscription>(new Subscription());
   emailForm:FormGroup = new FormGroup({
     email: new FormControl("",{validators:[Validators.required, Validators.email]})
   });
@@ -36,11 +35,11 @@ export class RecoveryEmailComponent {
       if(isPlatformBrowser(this.platformId)){
         localStorage.setItem("email", this.emailControl.value);
       }
-      this.sub.set(this._authService.forgotPassword(data).subscribe({
+      this._authService.forgotPassword(data).subscribe({
         next:()=>{
           this.router.navigate(['/reset-page']);
         }
-      }));
+      });
     }
   }
 }
